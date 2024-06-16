@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>get.png</file>
+        <file>drop.png</file>
+        <file>../style/style.qss</file>
+        <file>red.png</file>
+        <file>redHovered.png</file>
+        <file>arrow.png</file>
+    </qresource>
+</RCC>
