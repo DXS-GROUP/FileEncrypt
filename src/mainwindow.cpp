@@ -2,7 +2,6 @@
 
 #include <QObject>
 #include <QPushButton>
-#include "download_file.h"
 #include "drop_file.h"
 
 #include <QFile>
@@ -11,13 +10,10 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     this->setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
-    this->setFixedSize(700, 250);
+    this->setFixedSize(350, 350);
 
     fileDrop = new FileDropWidget();
-    fileDrop->setPixmap(QPixmap(":/drop.png").scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-
-    fileDownload = new SaveFileDialogButton("");
-    fileDownload->setPixmap(QPixmap(":/get.png").scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    fileDrop->setPixmap(QPixmap(":/get.png").scaled(180, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
     closeBtn = new QPushButton("");
     closeBtn->setFixedSize(15, 15);
@@ -35,9 +31,8 @@ MainWindow::MainWindow(QWidget *parent)
                             "    background-color: rgba(0, 0, 0, 0);"
                             "}");
 
-    startEncrypt = new QPushButton(">");
-    startEncrypt->setFixedSize(210, 210);
-    startEncrypt->setStyleSheet("QPushButton {background-color: transparent; border: 0px transparent; font-size: 60px;}");
+    startEncrypt = new QPushButton("Start process");
+    startEncrypt->setFixedSize(150, 25);
 
     centralWidget = new QWidget();
     this->setCentralWidget(centralWidget);
@@ -45,10 +40,9 @@ MainWindow::MainWindow(QWidget *parent)
     mainLayout = new QGridLayout;
     centralWidget->setLayout(mainLayout);
 
-    mainLayout->addWidget(closeBtn, 0, 1, 1 , 4, Qt::AlignLeft);
-    mainLayout->addWidget(fileDrop, 1, 1, 2, 2, Qt::AlignCenter);
-    mainLayout->addWidget(fileDownload, 1, 4, 2, 2, Qt::AlignCenter);
-    mainLayout->addWidget(startEncrypt, 1, 3, 1, 1, Qt::AlignCenter);
+    mainLayout->addWidget(closeBtn, 0, 0, 1, 4, Qt::AlignLeft);
+    mainLayout->addWidget(fileDrop, 1, 0, 4, 4, Qt::AlignCenter);
+    mainLayout->addWidget(startEncrypt, 5, 0, 1, 4, Qt::AlignCenter);
 
     connect(closeBtn, SIGNAL(clicked()), this, SLOT(closeButtonClicked()));
 }

@@ -13,7 +13,6 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
-    download_file.h \
     drop_file.h \
     mainwindow.h
 

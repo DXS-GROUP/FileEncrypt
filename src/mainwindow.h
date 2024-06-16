@@ -6,8 +6,8 @@
 #include <QDragEnterEvent>
 #include <QDropEvent>
 #include <QGridLayout>
+#include <QPushButton>
 
-#include "download_file.h"
 #include "drop_file.h"
 
 QT_BEGIN_NAMESPACE
@@ -54,7 +54,6 @@ private:
     QPoint m_dragPosition;
 
     FileDropWidget *fileDrop;
-    SaveFileDialogButton *fileDownload;
 
     QPushButton *closeBtn;
     QPushButton *startEncrypt;
