@@ -3,3 +3,5 @@ build/
 *.moc
 *.user
 .vscode
+src/moc_*
+src/qrc*
