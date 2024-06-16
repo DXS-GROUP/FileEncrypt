@@ -16,25 +16,13 @@ public:
     FileDropWidget(QLabel *parent = nullptr) : QLabel(parent) {}
 
 protected:
-    void dragEnterEvent(QDragEnterEvent *event) override {
-        if (event->mimeData()->hasUrls()) {
-            event->acceptProposedAction();
-        }
-    }
+    void dropEvent(QDropEvent *event) override
+    {
+        QString filePath = event->mimeData()->text();
+        QFileInfo fileInfo(filePath);
+        QString fileSuffix = fileInfo.suffix();
 
-    void dropEvent(QDropEvent *event) override {
-        const QMimeData *mimeData = event->mimeData();
-        if (mimeData->hasUrls()) {
-            QList<QUrl> urls = mimeData->urls();
-            foreach (const QUrl &url, urls) {
-                QString filePath = url.toLocalFile();
-                QString fileExtension = QFileInfo(filePath).suffix();
-
-                // Здесь можно обработать filePath и fileExtension
-                qDebug() << "File path:" << filePath;
-                qDebug() << "File extension:" << fileExtension;
-            }
-        }
+        qDebug() << "[Dropped file]:" << filePath;
     }
 };
 

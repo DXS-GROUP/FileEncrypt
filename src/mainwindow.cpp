@@ -2,6 +2,10 @@
 
 #include <QObject>
 #include <QPushButton>
+
+#include "encrypt.cpp"
+#include "decrypt.cpp"
+
 #include "drop_file.h"
 
 #include <QFile>
@@ -45,6 +49,7 @@ MainWindow::MainWindow(QWidget *parent)
     mainLayout->addWidget(startEncrypt, 5, 0, 1, 4, Qt::AlignCenter);
 
     connect(closeBtn, SIGNAL(clicked()), this, SLOT(closeButtonClicked()));
+    connect(startEncrypt, SIGNAL(clicked()), this, SLOT(fileEncrypt()));
 }
 
 MainWindow::~MainWindow()
@@ -53,4 +58,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::closeButtonClicked() {
     this->close();
+}
+
+void MainWindow::fileEncrypt() {
+    qDebug() << "Encrypting";
 }

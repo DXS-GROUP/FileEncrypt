@@ -7,6 +7,8 @@
 #include <QDropEvent>
 #include <QGridLayout>
 #include <QPushButton>
+#include <encrypt.cpp>
+#include <decrypt.cpp>
 
 #include "drop_file.h"
 
@@ -49,6 +51,7 @@ protected:
 
 private slots:
     void closeButtonClicked();
+    void fileEncrypt();
 
 private:
     QPoint m_dragPosition;
