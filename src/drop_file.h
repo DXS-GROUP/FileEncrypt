@@ -1,29 +1,41 @@
-#ifndef DROP_FILE_H
-#define DROP_FILE_H
-
-#include <QDebug>
-#include <QWidget>
-#include <QFileInfo>
-#include <QDragEnterEvent>
-#include <QMimeData>
-#include <QString>
 #include <QLabel>
+#include <QDragEnterEvent>
+#include <QDropEvent>
+#include <QFile>
+#include <QMimeData>
+#include <QTextStream>
+#include <QDebug>
+#include <QFileInfo>
 
 class FileDropWidget : public QLabel {
     Q_OBJECT
 
 public:
-    FileDropWidget(QLabel *parent = nullptr) : QLabel(parent) {}
+    QString filePath;
+    FileDropWidget(QWidget *parent = nullptr) : QLabel(parent) {
+        setAcceptDrops(true);
+    }
+    QString getFilePath() const { return filePath; }
+    QString getFileName() const {
+        QFileInfo fileInfo(filePath);
+        return fileInfo.fileName();
+    }
 
 protected:
-    void dropEvent(QDropEvent *event) override
-    {
-        QString filePath = event->mimeData()->text();
-        QFileInfo fileInfo(filePath);
-        QString fileSuffix = fileInfo.suffix();
+    void dragEnterEvent(QDragEnterEvent *event) override {
+        if (event->mimeData()->hasUrls()) {
+            event->acceptProposedAction();
+        }
+    }
 
-        qDebug() << "[Dropped file]:" << filePath;
+    void dropEvent(QDropEvent *event) override {
+        QList<QUrl> urls = event->mimeData()->urls();
+        if (!urls.isEmpty()) {
+            filePath = urls.first().toLocalFile();
+            if (QFile::exists(filePath)) {
+
+                qDebug() << "File path: " << filePath;
+            }
+        }
     }
 };
-
-#endif // DROP_FILE_H
