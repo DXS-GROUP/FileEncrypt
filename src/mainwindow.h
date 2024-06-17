@@ -8,7 +8,6 @@
 #include <QGridLayout>
 #include <QPushButton>
 #include <encrypt.cpp>
-#include <decrypt.cpp>
 #include <QComboBox>
 
 #include "drop_file.h"
@@ -27,6 +26,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    QLabel *label;
 
 protected:
     void mousePressEvent(QMouseEvent *event) override
@@ -52,7 +52,7 @@ protected:
 
 private slots:
     void closeButtonClicked();
-    void fileEncrypt();
+    void startProcessing();
 
 private:
     QPoint m_dragPosition;
@@ -62,10 +62,14 @@ private:
     QPushButton *closeBtn;
     QPushButton *startEncrypt;
 
+    QLineEdit *password;
+
     QComboBox *process;
 
     QWidget *centralWidget;
     QGridLayout *mainLayout;
+
+    FileCrypt *fileCrypt;
 
     MainWindow *mainWindow;
 };

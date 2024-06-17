@@ -11,8 +11,7 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    encrypt.cpp \
-    decrypt.cpp 
+    encrypt.cpp
 
 HEADERS += \
     drop_file.h \
