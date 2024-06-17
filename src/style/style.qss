@@ -165,8 +165,8 @@ QFontComboBox {
 QComboBox {
     color: #fff;
     border-radius: 10px;
-    background-color: #7289da;
-    alternate-background-color: #7289DA;
+    background-color: transparent;
+    alternate-background-color: transparent;
 }
 
 QSpinBox {

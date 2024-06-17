@@ -9,6 +9,7 @@
 #include <QPushButton>
 #include <encrypt.cpp>
 #include <decrypt.cpp>
+#include <QComboBox>
 
 #include "drop_file.h"
 
@@ -60,6 +61,8 @@ private:
 
     QPushButton *closeBtn;
     QPushButton *startEncrypt;
+
+    QComboBox *process;
 
     QWidget *centralWidget;
     QGridLayout *mainLayout;

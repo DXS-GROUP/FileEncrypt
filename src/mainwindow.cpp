@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 
 #include <QObject>
+#include <QComboBox>
 #include <QPushButton>
 
 #include "encrypt.cpp"
@@ -38,6 +39,11 @@ MainWindow::MainWindow(QWidget *parent)
     startEncrypt = new QPushButton("Start process");
     startEncrypt->setFixedSize(150, 25);
 
+    process = new QComboBox();
+    process->setFixedSize(150, 30);
+    process->addItem("Encrypt");
+    process->addItem("Decrypt");
+
     centralWidget = new QWidget();
     this->setCentralWidget(centralWidget);
 
@@ -46,7 +52,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     mainLayout->addWidget(closeBtn, 0, 0, 1, 4, Qt::AlignLeft);
     mainLayout->addWidget(fileDrop, 1, 0, 4, 4, Qt::AlignCenter);
-    mainLayout->addWidget(startEncrypt, 5, 0, 1, 4, Qt::AlignCenter);
+    mainLayout->addWidget(process, 5, 0, 1, 4, Qt::AlignCenter);
+    mainLayout->addWidget(startEncrypt, 6, 0, 1, 4, Qt::AlignCenter);
 
     connect(closeBtn, SIGNAL(clicked()), this, SLOT(closeButtonClicked()));
     connect(startEncrypt, SIGNAL(clicked()), this, SLOT(fileEncrypt()));
